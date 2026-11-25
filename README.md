@@ -22,7 +22,7 @@ Hãy đóng vai chuyên gia xử lý dữ liệu JSON. Dựa trên danh sách k�
       "name": "Tên hiển thị của kênh",
       "group": "Tên nhóm tab (ví dụ: Thể Thao, Phim Truyện, Tin Tức...)",
       "sourceType": "id",
-      "contentId": "40_ky_tu_hex_neu_la_acestream_id",
+      "contentId": "40_ky_tu_hex_neu_la_p2p_content_id",
       "infohash": "40_ky_tu_hex_neu_la_magnet_btih_infohash",
       "directUrl": "https://...m3u8_neu_la_luong_hls_truc_tiep",
       "backups": [
@@ -40,7 +40,7 @@ Hãy đóng vai chuyên gia xử lý dữ liệu JSON. Dựa trên danh sách k�
 
 Quy tắc bắt buộc khi tạo JSON cho Aces:
 1. Nhận diện đúng loại nguồn (`sourceType`):
-   - Nếu nguồn là `acestream://<40_hex>` hoặc mã Content ID 40 ký tự hex -> đặt `"sourceType": "id"` và điền 40 ký tự chữ thường vào `"contentId"`.
+   - Nếu nguồn là mã Content ID 40 ký tự hex (hoặc URI P2P 40-hex) -> đặt `"sourceType": "id"` và điền 40 ký tự chữ thường vào `"contentId"`.
    - Nếu nguồn là `magnet:?xt=urn:btih:<40_hex>` hoặc Infohash -> đặt `"sourceType": "infohash"` và điền 40 ký tự chữ thường vào `"infohash"`.
    - Nếu nguồn là link HTTP/HTTPS trực tiếp (`.m3u8`, `.ts`, `.mp4`) -> đặt `"sourceType": "direct"` và điền URL vào `"directUrl"`.
 2. Nếu 1 kênh có nhiều link/mã trùng tên -> lấy mã đầu tiên làm luồng chính, các mã 40-hex còn lại gom vào mảng `"backups"` kèm `"backupTypes"` tương ứng (`"id"` hoặc `"infohash"`).
@@ -64,7 +64,7 @@ Sau khi AI trả kết quả:
 | --- | :---: | --- |
 | `name` | **Có** | Tên kênh hiển thị trên thẻ kênh và thanh phát (VD: `"Open Movie 1080p"`). |
 | `sourceType` | Khuyến nghị | `"id"` (Content ID 40 hex), `"infohash"` (BitTorrent Infohash 40 hex), hoặc `"direct"` (link `.m3u8` / HTTP trực tiếp). Nếu bỏ trống, Aces tự nhận diện. |
-| `contentId` | 1 trong 3 | Chuỗi **40 ký tự hex** (`0-9`, `a-f`) của Content ID (chấp nhận cả dạng `acestream://...`). |
+| `contentId` | 1 trong 3 | Chuỗi **40 ký tự hex** (`0-9`, `a-f`) của mã P2P Content ID. |
 | `infohash` | 1 trong 3 | Chuỗi **40 ký tự hex** Infohash (chấp nhận cả dạng `magnet:?xt=urn:btih:...`). |
 | `directUrl` | 1 trong 3 | Đường dẫn `http://` hoặc `https://` phát trực tiếp HLS `.m3u8` / `.ts` / `.mp4`. |
 | `group` | Tùy chọn | Tên nhóm kênh. Aces tự động tạo các thanh **Tab lọc nhóm** theo đúng thứ tự xuất hiện của `group`. |
@@ -102,7 +102,8 @@ https://raw.githubusercontent.com/hongson117/Aces/main/aces_channel_template.jso
 
 ---
 
-## 5. Khuyến Cáo Pháp Lý & Quyền Riêng Tư
+## 5. Điều Khoản Dịch Vụ, Khuyến Cáo Pháp Lý & Quyền Riêng Tư
 
+- [Điều khoản Dịch vụ & Gói Bản quyền Aces Pro (`TERMS_OF_SERVICE.md`)](./TERMS_OF_SERVICE.md)
 - [Khuyến cáo Pháp lý & Trách nhiệm Người dùng (`DISCLAIMER.md`)](./DISCLAIMER.md)
 - [Chính sách Quyền riêng tư (`PRIVACY_POLICY.md`)](./PRIVACY_POLICY.md)
